@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Elegance | Exclusividad</title>
+    <title>TRoxy Venom | Exclusividad Dark</title>
     <style>
         :root {
-            --bg-color: #08080a;
-            --card-bg: #121216;
-            --accent-color: #d4af37; /* Tono dorado sutil o cambia a #ff2a6d para neón */
-            --text-main: #f1f1f1;
-            --text-muted: #888898;
+            --bg-color: #050507;
+            --card-bg: #0f0e13;
+            --accent-pink: #ff2a6d; /* Fucsia neón hot */
+            --accent-glow: rgba(255, 42, 109, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #a0a0b0;
         }
 
         body {
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
+            background-image: radial-gradient(circle at center, #1a0814 0%, #050507 100%);
             color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
@@ -34,61 +37,110 @@
 
         .profile-card {
             background-color: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 16px;
+            border: 1px solid var(--accent-pink);
+            border-radius: 20px;
             padding: 30px 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 25px var(--accent-glow), inset 0 0 15px rgba(255, 42, 109, 0.1);
+            position: relative;
+        }
+
+        /* Estilo del Logo Superior */
+        .logo-img {
+            max-width: 200px;
+            width: 80%;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 8px var(--accent-pink));
+        }
+
+        /* Avatar de la chica gótica hot */
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px auto;
         }
 
         .avatar {
-            width: 90px;
-            height: 90px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 2px solid var(--accent-color);
+            border: 3px solid var(--accent-pink);
             object-fit: cover;
-            margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px var(--accent-pink);
         }
 
-        h1 {
-            font-size: 1.4rem;
-            margin: 10px 0 5px;
-            letter-spacing: 2px;
-            font-weight: 400;
-            text-transform: uppercase;
-        }
-
-        p.bio {
-            font-size: 0.85rem;
+        .bio {
+            font-size: 0.9rem;
             color: var(--text-muted);
             margin-bottom: 25px;
-            line-height: 1.6;
+            line-height: 1.5;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
+        .bio strong {
+            color: var(--accent-pink);
+        }
+
+        /* Botones estilo Neón Hot */
         .btn {
             display: block;
             width: 100%;
-            padding: 12px 0;
-            margin-bottom: 12px;
-            background: transparent;
-            border: 1px solid var(--accent-color);
+            padding: 14px 0;
+            margin-bottom: 14px;
+            background: linear-gradient(135deg, #16151d, #22101e);
+            border: 1px solid var(--accent-pink);
             color: var(--text-main);
-            border-radius: 8px;
+            border-radius: 12px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            font-weight: bold;
             letter-spacing: 1px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
         }
 
         .btn:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            background-color: var(--accent-pink);
+            background: var(--accent-pink);
+            color: #ffffff;
+            box-shadow: 0 0 25px var(--accent-pink);
+            transform: translateY(-2px);
+        }
+
+        /* Reproductor de Música Flotante / Integrado */
+        .music-box {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 42, 109, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .music-btn {
+            background: var(--accent-pink);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--accent-pink);
+            transition: 0.2s;
+        }
+
+        .music-btn:active {
+            transform: scale(0.95);
         }
 
         .footer {
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 0.7rem;
             color: var(--text-muted);
             letter-spacing: 3px;
@@ -98,26 +150,68 @@
 </head>
 <body>
 
+    <!-- Etiqueta de Audio de Fondo (Reemplaza 'tu-musica.mp3' por el enlace o nombre de tu archivo de audio) -->
+    <audio id="background-music" loop>
+        <source src="tu-musica.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+
     <div class="container">
         <div class="profile-card">
-            <!-- Imagen de perfil con estética dark -->
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop" alt="Avatar" class="avatar">
             
-            <h1>TRoxy Venom</h1>
+            <!-- Tu Logo Personalizado -->
+            <img src="1790292867025.png" alt="TRoxy Venom Logo" class="logo-img">
+
+            <!-- Tu Avatar / Imagen Hot Gótica -->
+            <div class="avatar-container">
+                <img src="1790292931520.png" alt="TRoxy Venom Avatar" class="avatar">
+            </div>
+            
+            <!-- Biografía Atractiva -->
             <p class="bio">
-                Deseo, código y misterio en la penumbra. <br>
-                Experiencias exclusivas y alta distinción.
+                🔥 <strong>Welcome to the pleasure zone</strong> 🔥<br>
+                Unleash your content desires en la penumbra. Exclusividad, fuego y tentación sin censura.
             </p>
 
-            <!-- Botones de Enlace -->
-            <a href="https://t.me/TRoxyVenomT" class="btn">💬 Contacto Directo</a>
-            <a href="https://t.me/+1sOeEuuEQdc0ZDlh" class="btn">✦ Canal Privado</a>
+            <!-- Botones de Enlace (Telegram / Canales / VIP) -->
+            <a href="https://t.me/TRoxyVenomT" class="btn" target="_blank">💬 Contacto Directo VIP</a>
+            <a href="https://t.me/+1sOeEuuEQdc0ZDlh" class="btn" target="_blank">✦ Canal Privado & Hot Content</a>
+
+            <!-- Controles de Música -->
+            <div class="music-box">
+                <span style="font-size: 0.8rem; color: #fff;">🎵 Música Ambiental:</span>
+                <button class="music-btn" onclick="toggleMusic()">▶ Reproducir</button>
+            </div>
 
             <div class="footer">
-                Secured by AEGIS Protocol
+                NINFOMANA-DARK 
             </div>
         </div>
     </div>
+
+    <!-- Script JavaScript para controlar la música -->
+    <script>
+        const music = document.getElementById('background-music');
+        const musicBtn = document.querySelector('.music-btn');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.textContent = "▶ Reproducir";
+                musicBtn.style.background = "var(--accent-pink)";
+                isPlaying = false;
+            } else {
+                music.play().then(() => {
+                    musicBtn.textContent = "⏸ Pausar";
+                    musicBtn.style.background = "#444";
+                    isPlaying = true;
+                }).catch(e => {
+                    alert("Sube un archivo de música válido (tu-musica.mp3) a tu repositorio.");
+                });
+            }
+        }
+    </script>
 
 </body>
 </html>
